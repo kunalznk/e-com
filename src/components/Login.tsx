@@ -43,7 +43,7 @@ export const Login = () => {
 
     // setTimeout(()=>{
     //   setLoading(false)
-      
+
     // },2000 )
 
     // set loading true
@@ -58,8 +58,8 @@ export const Login = () => {
   }
 
   return <>
-  {loading ? <Loader /> : null}
-  {/* <Loader/> */}
+    {loading ? <Loader /> : null}
+    {/* <Loader/> */}
     {<form onSubmit={handleSubmit(login)}>
       <Stack spacing={4} padding={2}>
         <TextField

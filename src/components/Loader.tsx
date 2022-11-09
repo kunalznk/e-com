@@ -8,9 +8,9 @@ const Loader = () => {
 
     return (
         <>
-        <div className="loader-background">
-            <Loading/>
-        </div>
+            <div className="loader-background">
+                <Loading />
+            </div>
 
         </>
     )
