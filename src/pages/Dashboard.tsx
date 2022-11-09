@@ -1,10 +1,12 @@
 import { Paper } from "@mui/material"
 import { Login } from "../components/Login"
+import Register from "../components/Register"
 
 const Dashboard = () => {
     return (
         <Paper>
-            <Login />
+            {/* <Login /> */}
+            <Register />
         </Paper>
     )
     
