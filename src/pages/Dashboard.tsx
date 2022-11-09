@@ -3,7 +3,7 @@ import { Login } from "../components/Login"
 
 const Dashboard = () => {
     return (
-        <Paper>
+        <Paper sx={{ maxWidth: 800, marginTop: 10 , margin : "auto "}}>
             <Login />
         </Paper>
     )

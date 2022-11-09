@@ -10,7 +10,7 @@ const userSlice = createSlice<USER , SliceCaseReducers<USER>>({
     name: "USER",
     initialState: {
         loginForm: {
-            emailId: "",
+            emailId: "example@email.com",
             password: ""
         },
 
