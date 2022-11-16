@@ -20,10 +20,11 @@ const userSlice = createSlice<USER, SliceCaseReducers<USER>>({
 
     registerForm: {
       emailId: "",
-      fistName: "",
+      firstName: "",
       lastName: "",
       password: "",
       phoneNumber: "",
+      role: "",
     },
   },
   reducers: {

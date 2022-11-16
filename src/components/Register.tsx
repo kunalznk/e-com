@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 import SubmitButton from "./SubmitButton";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useForm } from "react-hook-form";
@@ -16,10 +16,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { userAction } from "../store/userSlice";
 import "./Register.css";
 import { signUp } from "../api/auth";
+import { useLocation } from "react-router-dom";
 
 function Register() {
   const dispatch = useAppDispatch();
   const { registerForm } = useAppSelector((state) => state.entities.user);
+  const { pathname } = useLocation();
+  const roleValue = pathname
+    .substring(pathname.lastIndexOf("/") + 1)
+    .toUpperCase();
+  console.log(
+    "My URL param",
+    pathname.substring(pathname.lastIndexOf("/") + 1)
+  );
+
   const {
     register,
     handleSubmit,
@@ -40,13 +50,21 @@ function Register() {
         value: e.target.value,
       })
     );
+    if (registerForm.role === "") {
+      dispatch(
+        userAction.setRegisterField({
+          field: "role",
+          value: roleValue,
+        })
+      );
+    }
   };
   const registerUser = async () => {
     const userData = await signUp(registerForm);
-    console.log("response from backend", userData);
+    console.log("response from backend inside");
   };
-  console.log("Register", register);
-  console.log("registerForm", registerForm);
+  // console.log("Register", register);
+  // console.log("registerForm", registerForm);
 
   return (
     <Box className="register-container">
@@ -59,16 +77,27 @@ function Register() {
 
           <CardContent>
             <Stack spacing={5} padding={2}>
+              <input
+                type="hidden"
+                {...register("role")}
+                value={registerForm.role}
+              />
+              <p>
+                {" "}
+                {errors.role?.message
+                  ? errors.role?.message
+                  : registerForm.role}
+              </p>
               <TextField
                 label={"First Name"}
-                {...register("fistName")}
-                value={registerForm.fistName}
+                {...register("firstName")}
+                value={registerForm.firstName}
                 onChange={(e) => {
                   onChange(e);
                 }}
-                error={Boolean(errors.fistName)}
+                error={Boolean(errors.firstName)}
                 helperText={
-                  errors.fistName?.message ? errors.fistName?.message : null
+                  errors.firstName?.message ? errors.firstName?.message : null
                 }
                 FormHelperTextProps={{
                   filled: false,

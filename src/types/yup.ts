@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const fistName = yup.string().required().min(5).max(100);
+const firstName = yup.string().required().min(5).max(100);
 const lastName = yup.string().required().min(5).max(100);
 const password = yup
   .string()
@@ -29,12 +29,15 @@ const phoneNumber = yup
   .min(10, "Number must be 10 digit")
   .max(10, "Number must be 10 digit");
 
+const role = yup.string().optional();
+
 export const CreateUserInputSchema = yup.object({
-  fistName,
+  firstName,
   lastName,
   emailId,
   password,
   phoneNumber,
+  role,
 });
 
 export const LoginInputSchema = yup.object({
